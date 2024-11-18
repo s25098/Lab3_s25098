@@ -20,11 +20,12 @@ def preprocess_data(data):
     X = data.drop(['score', 'rownames'], axis=1)
     y = data['score']
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
+    numerical_columns = X.select_dtypes(include=['float64', 'int64']).columns
     scaler = StandardScaler()
-    X_train = scaler.fit_transform(X_train)
-    X_test = scaler.transform(X_test)
+
+    X[numerical_columns] = scaler.fit_transform(X[numerical_columns])
+
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
     return X_train, X_test, y_train, y_test
 
