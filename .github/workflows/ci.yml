@@ -25,3 +25,7 @@ jobs:
       - name: Clean and Prepare data
         run: |
           python prepare_data.py
+
+      - name: Model Training and Evaluation
+        run: |
+          python model_training.py
