@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
@@ -59,6 +60,9 @@ def preprocess_data(data):
 
 
 def save_preprocessed_data(X_train, X_test, y_train, y_test):
+    if not os.path.exists('data'):
+        os.makedirs('data')
+
     X_train.to_csv("data/X_train.csv", index=False)
     X_test.to_csv("data/X_test.csv", index=False)
     y_train.to_csv("data/y_train.csv", index=False, header=True)
